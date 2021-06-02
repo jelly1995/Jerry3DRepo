@@ -2,9 +2,6 @@ import os
 import open3d.ml as _ml3d
 import open3d.ml.torch as ml3d
 
-
-
-
 """ # construct a dataset by specifying dataset_path
 dataset = ml3d.datasets.NuScenes(dataset_path='/home/jerry/Desktop/NuScenesDataset/mini')
 
