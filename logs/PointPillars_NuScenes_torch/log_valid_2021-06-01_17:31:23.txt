@@ -1,0 +1,26 @@
+Started validation
+validation -  loss_cls: 3.260 loss_bbox: 1.428 loss_dir: 0.483 > loss: 5.171
+
+=============== mAP BEV ===============
+class \ difficulty      0 
+car:                  9.09 
+truck:                3.03 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.12 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 1.75
+
+=============== mAP  3D ===============
+class \ difficulty      0 
+car:                  0.79 
+truck:                0.00 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 0.11
+Epoch 140: save ckpt to ./logs/PointPillars_NuScenes_torch/checkpoint
+=== EPOCH 141/200 ===

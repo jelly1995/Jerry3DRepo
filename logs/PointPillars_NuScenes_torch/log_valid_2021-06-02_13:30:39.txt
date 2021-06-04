@@ -1,0 +1,25 @@
+Started validation
+validation -  loss_cls: 3.495 loss_bbox: 1.426 loss_dir: 0.590 > loss: 5.510
+
+=============== mAP BEV ===============
+class \ difficulty      0 
+car:                  9.09 
+truck:                0.00 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 1.30
+
+=============== mAP  3D ===============
+class \ difficulty      0 
+car:                  0.50 
+truck:                0.00 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 0.07
+Started testing

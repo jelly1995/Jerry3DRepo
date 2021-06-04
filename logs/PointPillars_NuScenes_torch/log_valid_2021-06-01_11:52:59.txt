@@ -1,0 +1,460 @@
+Started validation
+validation -  loss_cls: 2.902 loss_bbox: 1.475 loss_dir: 0.451 > loss: 4.828
+
+=============== mAP BEV ===============
+class \ difficulty      0 
+car:                  9.09 
+truck:                1.52 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.48 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 1.58
+
+=============== mAP  3D ===============
+class \ difficulty      0 
+car:                  4.55 
+truck:                0.00 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 0.65
+=== EPOCH 118/200 ===
+DEVICE : cuda
+Logging in file : ./logs/PointPillars_NuScenes_torch/log_valid_2021-06-01_12:02:46.txt
+Started validation
+validation -  loss_cls: 2.784 loss_bbox: 1.537 loss_dir: 0.455 > loss: 4.776
+
+=============== mAP BEV ===============
+class \ difficulty      0 
+car:                  6.74 
+truck:                0.35 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.05 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 1.02
+
+=============== mAP  3D ===============
+class \ difficulty      0 
+car:                  0.65 
+truck:                0.00 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 0.09
+=== EPOCH 119/200 ===
+DEVICE : cuda
+Logging in file : ./logs/PointPillars_NuScenes_torch/log_valid_2021-06-01_12:12:32.txt
+Started validation
+validation -  loss_cls: 2.993 loss_bbox: 1.451 loss_dir: 0.481 > loss: 4.925
+
+=============== mAP BEV ===============
+class \ difficulty      0 
+car:                  4.55 
+truck:                9.09 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.06 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 1.96
+
+=============== mAP  3D ===============
+class \ difficulty      0 
+car:                  3.03 
+truck:                0.00 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 0.43
+=== EPOCH 120/200 ===
+DEVICE : cuda
+Logging in file : ./logs/PointPillars_NuScenes_torch/log_valid_2021-06-01_12:22:17.txt
+Started validation
+validation -  loss_cls: 2.846 loss_bbox: 1.425 loss_dir: 0.479 > loss: 4.749
+
+=============== mAP BEV ===============
+class \ difficulty      0 
+car:                  9.09 
+truck:                4.55 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.40 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 2.00
+
+=============== mAP  3D ===============
+class \ difficulty      0 
+car:                  0.76 
+truck:                0.00 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 0.11
+Epoch 120: save ckpt to ./logs/PointPillars_NuScenes_torch/checkpoint
+=== EPOCH 121/200 ===
+DEVICE : cuda
+Logging in file : ./logs/PointPillars_NuScenes_torch/log_valid_2021-06-01_12:32:04.txt
+Started validation
+validation -  loss_cls: 3.208 loss_bbox: 1.468 loss_dir: 0.474 > loss: 5.150
+
+=============== mAP BEV ===============
+class \ difficulty      0 
+car:                  9.09 
+truck:                9.09 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.91 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 2.73
+
+=============== mAP  3D ===============
+class \ difficulty      0 
+car:                  0.70 
+truck:                0.00 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 0.10
+=== EPOCH 122/200 ===
+DEVICE : cuda
+Logging in file : ./logs/PointPillars_NuScenes_torch/log_valid_2021-06-01_12:41:52.txt
+Started validation
+validation -  loss_cls: 3.760 loss_bbox: 1.553 loss_dir: 0.576 > loss: 5.889
+
+=============== mAP BEV ===============
+class \ difficulty      0 
+car:                  9.09 
+truck:                0.00 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.45 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 1.36
+
+=============== mAP  3D ===============
+class \ difficulty      0 
+car:                  9.09 
+truck:                0.00 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 1.30
+=== EPOCH 123/200 ===
+DEVICE : cuda
+Logging in file : ./logs/PointPillars_NuScenes_torch/log_valid_2021-06-01_12:51:40.txt
+Started validation
+validation -  loss_cls: 3.260 loss_bbox: 1.517 loss_dir: 0.519 > loss: 5.296
+
+=============== mAP BEV ===============
+class \ difficulty      0 
+car:                  9.09 
+truck:                3.03 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.31 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 1.78
+
+=============== mAP  3D ===============
+class \ difficulty      0 
+car:                  2.27 
+truck:                0.48 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 0.39
+=== EPOCH 124/200 ===
+DEVICE : cuda
+Logging in file : ./logs/PointPillars_NuScenes_torch/log_valid_2021-06-01_13:01:27.txt
+Started validation
+validation -  loss_cls: 2.937 loss_bbox: 1.391 loss_dir: 0.451 > loss: 4.779
+
+=============== mAP BEV ===============
+class \ difficulty      0 
+car:                  9.09 
+truck:                1.82 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 1.56
+
+=============== mAP  3D ===============
+class \ difficulty      0 
+car:                  0.41 
+truck:                0.00 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 0.06
+=== EPOCH 125/200 ===
+DEVICE : cuda
+Logging in file : ./logs/PointPillars_NuScenes_torch/log_valid_2021-06-01_13:11:14.txt
+Started validation
+validation -  loss_cls: 2.897 loss_bbox: 1.398 loss_dir: 0.434 > loss: 4.729
+
+=============== mAP BEV ===============
+class \ difficulty      0 
+car:                  9.09 
+truck:                9.09 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           9.09 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 3.90
+
+=============== mAP  3D ===============
+class \ difficulty      0 
+car:                  4.55 
+truck:                0.00 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 0.65
+Epoch 125: save ckpt to ./logs/PointPillars_NuScenes_torch/checkpoint
+=== EPOCH 126/200 ===
+DEVICE : cuda
+Logging in file : ./logs/PointPillars_NuScenes_torch/log_valid_2021-06-01_13:21:00.txt
+Started validation
+validation -  loss_cls: 2.888 loss_bbox: 1.404 loss_dir: 0.454 > loss: 4.746
+
+=============== mAP BEV ===============
+class \ difficulty      0 
+car:                  4.29 
+truck:                9.09 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           1.52 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 2.13
+
+=============== mAP  3D ===============
+class \ difficulty      0 
+car:                  0.57 
+truck:                0.00 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 0.08
+=== EPOCH 127/200 ===
+DEVICE : cuda
+Logging in file : ./logs/PointPillars_NuScenes_torch/log_valid_2021-06-01_13:30:45.txt
+Started validation
+validation -  loss_cls: 3.084 loss_bbox: 1.535 loss_dir: 0.471 > loss: 5.090
+
+=============== mAP BEV ===============
+class \ difficulty      0 
+car:                  9.09 
+truck:                2.27 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           3.03 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 2.06
+
+=============== mAP  3D ===============
+class \ difficulty      0 
+car:                  0.70 
+truck:                0.18 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 0.13
+=== EPOCH 128/200 ===
+DEVICE : cuda
+Logging in file : ./logs/PointPillars_NuScenes_torch/log_valid_2021-06-01_13:40:32.txt
+Started validation
+validation -  loss_cls: 3.318 loss_bbox: 1.531 loss_dir: 0.523 > loss: 5.372
+
+=============== mAP BEV ===============
+class \ difficulty      0 
+car:                  9.09 
+truck:                0.00 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           1.14 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 1.46
+
+=============== mAP  3D ===============
+class \ difficulty      0 
+car:                  0.47 
+truck:                0.00 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 0.07
+=== EPOCH 129/200 ===
+DEVICE : cuda
+Logging in file : ./logs/PointPillars_NuScenes_torch/log_valid_2021-06-01_13:50:19.txt
+Started validation
+validation -  loss_cls: 3.268 loss_bbox: 1.444 loss_dir: 0.483 > loss: 5.196
+
+=============== mAP BEV ===============
+class \ difficulty      0 
+car:                  9.09 
+truck:                0.65 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 1.39
+
+=============== mAP  3D ===============
+class \ difficulty      0 
+car:                  4.55 
+truck:                0.00 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 0.65
+=== EPOCH 130/200 ===
+DEVICE : cuda
+Logging in file : ./logs/PointPillars_NuScenes_torch/log_valid_2021-06-01_14:00:05.txt
+Started validation
+validation -  loss_cls: 3.078 loss_bbox: 1.493 loss_dir: 0.463 > loss: 5.033
+
+=============== mAP BEV ===============
+class \ difficulty      0 
+car:                  3.29 
+truck:                0.00 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 0.47
+
+=============== mAP  3D ===============
+class \ difficulty      0 
+car:                  0.43 
+truck:                0.00 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 0.06
+Epoch 130: save ckpt to ./logs/PointPillars_NuScenes_torch/checkpoint
+=== EPOCH 131/200 ===
+DEVICE : cuda
+Logging in file : ./logs/PointPillars_NuScenes_torch/log_valid_2021-06-01_14:10:21.txt
+Started validation
+validation -  loss_cls: 3.224 loss_bbox: 1.587 loss_dir: 0.476 > loss: 5.286
+
+=============== mAP BEV ===============
+class \ difficulty      0 
+car:                  9.09 
+truck:                9.09 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.53 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 2.67
+
+=============== mAP  3D ===============
+class \ difficulty      0 
+car:                  0.36 
+truck:                0.00 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 0.05
+=== EPOCH 132/200 ===
+DEVICE : cuda
+Logging in file : ./logs/PointPillars_NuScenes_torch/log_valid_2021-06-01_14:20:33.txt
+Started validation
+validation -  loss_cls: 3.241 loss_bbox: 1.577 loss_dir: 0.481 > loss: 5.299
+
+=============== mAP BEV ===============
+class \ difficulty      0 
+car:                  4.55 
+truck:                0.00 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 0.65
+
+=============== mAP  3D ===============
+class \ difficulty      0 
+car:                  4.55 
+truck:                0.00 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 0.65
+=== EPOCH 133/200 ===
+DEVICE : cuda
+Logging in file : ./logs/PointPillars_NuScenes_torch/log_valid_2021-06-01_14:30:24.txt
+Started validation
+validation -  loss_cls: 3.036 loss_bbox: 1.412 loss_dir: 0.424 > loss: 4.872
+
+=============== mAP BEV ===============
+class \ difficulty      0 
+car:                  4.13 
+truck:                9.09 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.22 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 1.92
+
+=============== mAP  3D ===============
+class \ difficulty      0 
+car:                  0.65 
+truck:                0.00 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 0.09
+=== EPOCH 134/200 ===
