@@ -1,3 +1,0 @@
-ckpt_path not given. Restore from the latest ckpt
-Loading checkpoint ./logs/PointPillars_NuScenes_torch/checkpoint/ckpt_00140.pth
-Loading checkpoint optimizer_state_dict

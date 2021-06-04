@@ -1,4 +1,0 @@
-Initializing from scratch.
-Writing summary in train_log/00011_PointPillars_NuScenes_torch.
-Started training
-=== EPOCH 0/200 ===
