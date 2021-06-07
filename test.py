@@ -1,33 +1,22 @@
 import os
+import numpy as np
 import open3d.ml as _ml3d
 import open3d.ml.torch as ml3d
 
-""" # construct a dataset by specifying dataset_path
-dataset = ml3d.datasets.NuScenes(dataset_path='/home/jerry/Desktop/NuScenesDataset/mini')
-
-# get the 'all' split that combines training, validation and test set
-all_split = dataset.get_split('val')
-print(all_split)
-# print the attributes of the first datum
-#print(all_split.get_attr(0))
-
-# print the shape of the first point cloud
-#print(all_split.get_data(0)['point'].shape)
-
-# show the first 100 frames using the visualizer
-vis = ml3d.vis.Visualizer()
-vis.visualize_dataset(dataset, 'val', indices=range(10))
- """
+#import open3d.ml.torch as ml3d
+from ml3d.ml3d.datasets.nuscenes import NuScenes as NS
+from ml3d.ml3d.torch.pipelines.object_detection import ObjectDetection as OD
+from ml3d.ml3d.torch.models.point_pillars import PointPillars as PP
 
 
 
-cfg_file = "./Open3D-ML/ml3d/configs/pointpillars_nuscenes.yml"
+cfg_file = "./ml3d/ml3d/configs/pointpillars_nuscenes.yml"
 cfg = _ml3d.utils.Config.load_from_file(cfg_file)
 
-model = ml3d.models.PointPillars(**cfg.model)
-cfg.dataset['dataset_path'] = "/home/jerry/Desktop/NuScenesDataset/testing"
-dataset = ml3d.datasets.NuScenes(cfg.dataset.pop('dataset_path', None), **cfg.dataset)
-pipeline = ml3d.pipelines.ObjectDetection(model, dataset=dataset, device="gpu", **cfg.pipeline)
+model = PP(**cfg.model)
+cfg.dataset['dataset_path'] = "/home/jerry/Desktop/NuScenesDataset/mini"
+dataset = NS(cfg.dataset.pop('dataset_path', None), **cfg.dataset)
+pipeline = OD(model, dataset=dataset, device="gpu", **cfg.pipeline)
 
 # get the weights.
 ckpt_folder = "./logs/PointPillars_NuScenes_torch/checkpoint"
@@ -37,29 +26,27 @@ if not os.path.exists(ckpt_path):
 
 # load the parameters.
 pipeline.load_ckpt(ckpt_path=ckpt_path)
+pipeline.cfg_tb = {
+    'readme': 'readme',
+    'cmd_line': 'cmd_line',
+    'dataset': '',
+    'model': '',
+    'pipeline': ''
+}
 
-""" training_split = dataset.get_split("train")
+boxes, pred, gt = pipeline.run_self_inference()
 
-data = training_split.get_data(0)
-print((data['point'].shape))
+data_split = dataset.get_split('validation')
+first_data = data_split.get_data(0)
 
-data = training_split.get_data(1)
-print((data['point'].shape))
+result = pipeline.run_inference(first_data)
 
-test_split = dataset.get_split("test")
 
-data = test_split.get_data(0)
-print((data['point'].shape)) """
+#print(first_data['bounding_boxes'])
 
-""" test_split = dataset.get_split("test")
-data = test_split.get_data(0)
-print(data) """
-
-# run inference on a single example.
-# returns dict with 'predict_labels' and 'predict_scores'.
-#result = pipeline.run_inference(data)
-
-#print(result)
-
-# evaluate performance on the test set; this will write logs to './logs'.
-pipeline.run_test() 
+vis = ml3d.vis.Visualizer()
+data = [ {
+    'name': 'my_point_cloud',
+    'points': first_data['point'],
+} ]
+#vis.visualize(data=data, bounding_boxes=boxes[0])

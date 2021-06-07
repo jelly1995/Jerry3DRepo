@@ -1,0 +1,29 @@
+ckpt_path not given. Restore from the latest ckpt
+Loading checkpoint ./logs/PointPillars_NuScenes_torch/checkpoint/ckpt_00150.pth
+DEVICE : cuda
+Logging in file : ./logs/PointPillars_NuScenes_torch/log_valid_2021-06-04_18:52:28.txt
+Started validation
+validation -  loss_cls: 3.278 loss_bbox: 1.477 loss_dir: 0.519 > loss: 5.274
+
+=============== mAP BEV ===============
+class \ difficulty      0 
+car:                  0.00 
+truck:                0.00 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 0.00
+
+=============== mAP  3D ===============
+class \ difficulty      0 
+car:                  0.00 
+truck:                0.00 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 0.00
+Started testing
