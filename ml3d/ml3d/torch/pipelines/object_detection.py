@@ -69,11 +69,11 @@ class ObjectDetection(BasePipeline):
                 }
             }])
         data.to(self.device)
-
+        gt = []
         with torch.no_grad():
             results = model(data)
             boxes = model.inference_end(results, data)
-
+            
         return boxes
 
     def run_test(self):
@@ -137,7 +137,6 @@ class ObjectDetection(BasePipeline):
 
         model.eval()
     
-        
         batcher = ConcatBatcher(device, model.cfg.name)
 
         valid_dataset = dataset.get_split('validation')
@@ -162,9 +161,10 @@ class ObjectDetection(BasePipeline):
         pred = []
         gt = []
         with torch.no_grad():
-            for data in tqdm(valid_loader):
-                print(dir(data))
+            for data in (valid_loader):
                 data.to(device)
+                print(data.point)
+                print(dir(data))
                 results = model(data)
                 boxes = model.inference_end(results, data)
                 pred.extend([BEVBox3D.to_dicts(b) for b in boxes])

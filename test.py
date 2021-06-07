@@ -8,7 +8,7 @@ from ml3d.ml3d.datasets.nuscenes import NuScenes as NS
 from ml3d.ml3d.torch.pipelines.object_detection import ObjectDetection as OD
 from ml3d.ml3d.torch.models.point_pillars import PointPillars as PP
 
-
+from ml3d.ml3d.vis.labellut import *
 
 cfg_file = "./ml3d/ml3d/configs/pointpillars_nuscenes.yml"
 cfg = _ml3d.utils.Config.load_from_file(cfg_file)
@@ -34,19 +34,27 @@ pipeline.cfg_tb = {
     'pipeline': ''
 }
 
-boxes, pred, gt = pipeline.run_self_inference()
+#boxes, pred, gt = pipeline.run_self_inference()
 
-data_split = dataset.get_split('validation')
-first_data = data_split.get_data(0)
+data_split = dataset.get_split('train')
+first_data = data_split.get_data(5)
 
-result = pipeline.run_inference(first_data)
+new_data = model.preprocess(first_data, {'split': 'test'})
 
+results = pipeline.run_inference(new_data)
 
-#print(first_data['bounding_boxes'])
+print("Predicted boxes:" + str(len(results[0])))
+#print(results[0])
+predictedLabels = np.array([results[0][i].label_class for i in range(len(results[0]))])
+#print(predictedLabels)
+print("----------------------------------------------")
+print("Ground truth boxes:" + str(len(first_data['bounding_boxes'])))
 
 vis = ml3d.vis.Visualizer()
 data = [ {
     'name': 'my_point_cloud',
     'points': first_data['point'],
 } ]
-#vis.visualize(data=data, bounding_boxes=boxes[0])
+
+#vis.visualize(data=data, bounding_boxes=results[0])
+vis.visualize(data=data, bounding_boxes=results[0])

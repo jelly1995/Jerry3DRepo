@@ -250,6 +250,7 @@ class NuSceneSplit():
             'point': pc,
             'feat': None,
             'calib': calib,
+            'bounding_boxes': None,
         }
 
         return data
