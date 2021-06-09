@@ -1,0 +1,33 @@
+ckpt_path not given. Restore from the latest ckpt
+Loading checkpoint ./logs/PointPillars_NuScenes_torch/checkpoint/ckpt_00005.pth
+Loading checkpoint optimizer_state_dict
+Writing summary in train_log/00003_PointPillars_NuScenes_torch.
+Started training
+=== EPOCH 6/200 ===
+DEVICE : cuda
+Logging in file : ./logs/PointPillars_NuScenes_torch/log_valid_2021-06-09_12:58:27.txt
+Started validation
+validation -  loss_cls: 0.947 loss_bbox: 1.787 loss_dir: 0.180 > loss: 2.915
+
+=============== mAP BEV ===============
+class \ difficulty      0 
+car:                  9.09 
+truck:                0.09 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           3.03 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 1.74
+
+=============== mAP  3D ===============
+class \ difficulty      0 
+car:                  9.09 
+truck:                0.09 
+trailer:              0.00 
+bicycle:              0.00 
+pedestrian:           0.00 
+traffic_cone:         0.00 
+barrier:              0.00 
+Overall: 1.31
+=== EPOCH 7/200 ===

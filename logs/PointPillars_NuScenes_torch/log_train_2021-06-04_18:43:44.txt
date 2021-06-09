@@ -1,6 +1,0 @@
-ckpt_path not given. Restore from the latest ckpt
-Loading checkpoint ./logs/PointPillars_NuScenes_torch/checkpoint/ckpt_00150.pth
-Loading checkpoint optimizer_state_dict
-Writing summary in train_log/00007_PointPillars_NuScenes_torch.
-Started training
-=== EPOCH 151/200 ===

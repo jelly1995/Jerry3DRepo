@@ -2,21 +2,25 @@ import os
 import open3d.ml as _ml3d
 import open3d.ml.torch as ml3d
 
-cfg_file = "./configs/pointpillars_nuscenes.yml"
+from open3dml.ml3d.datasets.nuscenes import NuScenes as NS
+from open3dml.ml3d.torch.pipelines.object_detection import ObjectDetection as OD
+from open3dml.ml3d.torch.models.point_pillars import PointPillars as PP
+
+cfg_file = "./open3dml/ml3d/configs/pointpillars_nuscenes.yml"
 cfg = _ml3d.utils.Config.load_from_file(cfg_file)
-
-model = ml3d.models.PointPillars(**cfg.model)
 cfg.dataset['dataset_path'] = "/home/jerry/Desktop/NuScenesDataset/mini"
-dataset = ml3d.datasets.NuScenes(cfg.dataset.pop('dataset_path', None), **cfg.dataset)
-pipeline = ml3d.pipelines.ObjectDetection(model, dataset=dataset, device="gpu", **cfg.pipeline)
 
+
+model = PP(**cfg.model)
+dataset = NS(cfg.dataset.pop('dataset_path', None), **cfg.dataset)
+pipeline = OD(model, dataset=dataset, device="gpu", **cfg.pipeline)
 
 # get the weights.
 ckpt_folder = "./logs/PointPillars_NuScenes_torch/checkpoint"
-ckpt_path = os.path.join(ckpt_folder, "ckpt_00150.pth")
+ckpt_path = os.path.join(ckpt_folder, "ckpt_00005.pth")
 if not os.path.exists(ckpt_path):
-    print('File not found')
-
+    print('File not found') 
+pipeline.load_ckpt(ckpt_path=ckpt_path)
 pipeline.cfg_tb = {
     'readme': 'readme',
     'cmd_line': 'cmd_line',
@@ -25,16 +29,4 @@ pipeline.cfg_tb = {
     'pipeline': ''
 }
 
-pipeline.load_ckpt(ckpt_path=ckpt_path)
-
-
-test_split = dataset.get_split("test")
-data = test_split.get_data(0)
-
-# run inference on a single example.
-# returns dict with 'predict_labels' and 'predict_scores'.
-result = pipeline.run_inference(data)
-print(result)
-pipeline.run_test()
-
-#pipeline.run_train() 
+pipeline.run_train()()

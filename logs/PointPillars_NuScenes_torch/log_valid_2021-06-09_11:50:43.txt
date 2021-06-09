@@ -1,0 +1,24 @@
+Started validation
+validation -  loss_cls: 2147.807 loss_bbox: 974.844 loss_dir: 720.796 > loss: 3843.447
+
+=============== mAP BEV ===============
+class \ difficulty      0 
+car:                   nan 
+truck:                 nan 
+trailer:               nan 
+bicycle:               nan 
+pedestrian:            nan 
+traffic_cone:          nan 
+barrier:               nan 
+Overall: nan
+
+=============== mAP  3D ===============
+class \ difficulty      0 
+car:                   nan 
+truck:                 nan 
+trailer:               nan 
+bicycle:               nan 
+pedestrian:            nan 
+traffic_cone:          nan 
+barrier:               nan 
+Overall: nan
