@@ -146,8 +146,14 @@ class ObjectDetection(BasePipeline):
         gt = []
         with torch.no_grad():
             for i in tqdm(range(len(valid_loader)), desc='validation'):
+
                 data = valid_loader[i]['data']
                 results = model(data['point'])
+
+                if(len(data['bbox_objs']) == 0):
+                    print(len(data['bbox_objs']))
+                    continue
+
                 loss = model.loss(results, data)
                 for l, v in loss.items():
                     if not l in self.valid_losses:
@@ -259,6 +265,11 @@ class ObjectDetection(BasePipeline):
                 data = train_loader[i]['data']
 
                 results = model(data['point'])
+                
+                if(len(data['bbox_objs']) == 0):
+                    print(len(data['bbox_objs']))
+                    continue
+
                 loss = model.loss(results, data)
                 loss_sum = sum(loss.values())
 

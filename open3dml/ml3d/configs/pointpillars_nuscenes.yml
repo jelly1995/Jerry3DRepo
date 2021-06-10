@@ -2,7 +2,7 @@ dataset:
   name: NuScenes
   dataset_path: # path/to/your/dataset
   cache_dir: ./logs/cache
-  steps_per_epoch_train: 5000
+  steps_per_epoch_train: 28000
 
 model:
   name: PointPillars
@@ -11,7 +11,7 @@ model:
   point_cloud_range: [-50, -50, -5, 50, 50, 3.0]
   classes: [
     'car', 'truck', 'trailer', 'bicycle',
-    'pedestrian', 'traffic_cone', 'barrier'
+    'pedestrian', 'traffic_cone', 'barrier',
   ]
 
   loss:

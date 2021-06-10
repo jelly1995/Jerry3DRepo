@@ -8,7 +8,8 @@ from open3dml.ml3d.torch.models.point_pillars import PointPillars as PP
 
 cfg_file = "./open3dml/ml3d/configs/pointpillars_nuscenes.yml"
 cfg = _ml3d.utils.Config.load_from_file(cfg_file)
-cfg.dataset['dataset_path'] = "/home/jerry/Desktop/NuScenesDataset/mini"
+cfg.dataset['dataset_path'] = "/media/jerry/HDD/N"
+#cfg.dataset['dataset_path'] = "/home/jerry/Desktop/NuScenesDataset/mini"
 
 
 model = PP(**cfg.model)
@@ -16,11 +17,11 @@ dataset = NS(cfg.dataset.pop('dataset_path', None), **cfg.dataset)
 pipeline = OD(model, dataset=dataset, device="gpu", **cfg.pipeline)
 
 # get the weights.
-ckpt_folder = "./logs/PointPillars_NuScenes_torch/checkpoint"
+""" ckpt_folder = "./logs/PointPillars_NuScenes_torch/checkpoint"
 ckpt_path = os.path.join(ckpt_folder, "ckpt_00005.pth")
 if not os.path.exists(ckpt_path):
     print('File not found') 
-pipeline.load_ckpt(ckpt_path=ckpt_path)
+pipeline.load_ckpt(ckpt_path=ckpt_path) """
 pipeline.cfg_tb = {
     'readme': 'readme',
     'cmd_line': 'cmd_line',
@@ -29,4 +30,4 @@ pipeline.cfg_tb = {
     'pipeline': ''
 }
 
-pipeline.run_train()()
+pipeline.run_train()

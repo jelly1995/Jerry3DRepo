@@ -83,7 +83,7 @@ class NuScenes(BaseDataset):
             7: 'pedestrian',
             8: 'traffic_cone',
             9: 'trailer',
-            10: 'truck'
+            10: 'truck',
         }
         return label_to_names
 

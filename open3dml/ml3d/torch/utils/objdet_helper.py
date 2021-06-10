@@ -96,6 +96,7 @@ def box3d_to_bev(boxes3d):
     Returns:
         torch.Tensor: Converted BEV boxes in XYWHR format.
     """
+    #print(boxes3d.shape)
     return boxes3d[:, [0, 1, 3, 4, 6]]
 
 

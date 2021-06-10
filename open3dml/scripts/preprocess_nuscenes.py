@@ -16,10 +16,11 @@ from tqdm import tqdm
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description='Preprocess NuScenes Dataset.')
+    parser = argparse.ArgumentParser(description='Preprocess NuScenes Dataset>>>>>>>.')
     parser.add_argument('--dataset_path',
                         help='path to Nuscene root',
-                        required=True)
+                        required=False,
+                        default='/media/jerry/HDD/N')
     parser.add_argument(
         '--out_path',
         help='Output path to store pickle (default to dataet_path)',

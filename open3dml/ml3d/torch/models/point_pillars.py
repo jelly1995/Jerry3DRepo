@@ -152,10 +152,13 @@ class PointPillars(BaseModel):
         # classification loss
         scores = scores.permute(
             (0, 2, 3, 1)).reshape(-1, self.bbox_head.num_classes)
+
         target_labels = torch.full((scores.size(0),),
                                    self.bbox_head.num_classes,
                                    device=scores.device,
                                    dtype=gt_labels.dtype)
+        #print((target_labels))
+
         target_labels[pos_idx] = gt_labels[target_idx]
 
         loss_cls = self.loss_cls(scores[torch.cat([pos_idx, neg_idx], axis=0)],
