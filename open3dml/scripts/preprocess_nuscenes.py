@@ -14,13 +14,12 @@ import random
 import argparse
 from tqdm import tqdm
 
-
 def parse_args():
     parser = argparse.ArgumentParser(description='Preprocess NuScenes Dataset>>>>>>>.')
     parser.add_argument('--dataset_path',
                         help='path to Nuscene root',
                         required=False,
-                        default='/media/jerry/HDD/N')
+                        default='/media/jerry/HDD/NTest')
     parser.add_argument(
         '--out_path',
         help='Output path to store pickle (default to dataet_path)',
@@ -29,7 +28,7 @@ def parse_args():
 
     parser.add_argument('--version',
                         help='one of {v1.0-trainval, v1.0-test, v1.0-mini}',
-                        default='v1.0-trainval')
+                        default='v1.0-test')
 
     args = parser.parse_args()
 

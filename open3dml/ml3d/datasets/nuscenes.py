@@ -143,8 +143,10 @@ class NuSceneSplit():
 
         self.infos = dataset.get_split_list(split)
         self.path_list = []
+        self.token_list = []
         for info in self.infos:
             self.path_list.append(info['lidar_path'])
+            self.token_list.append(info['token'])
 
         log.info("Found {} pointclouds for {}".format(len(self.infos), split))
 
@@ -171,6 +173,28 @@ class NuSceneSplit():
             'feat': None,
             'calib': calib,
             'bounding_boxes': label,
+        }
+
+        return data
+
+    def get_data_without_label(self, idx):
+        info = self.infos[idx]
+        lidar_path = info['lidar_path']
+        token = info['token']
+
+        world_cam = np.eye(4)
+        world_cam[:3, :3] = R.from_quat(info['lidar2ego_rot']).as_matrix()
+        world_cam[:3, -1] = info['lidar2ego_tr']
+        calib = {'world_cam': world_cam.T}
+
+        pc = self.dataset.read_lidar(lidar_path)
+
+        data = {
+            'point': pc,
+            'feat': None,
+            'calib': calib,
+            'bounding_boxes': '',
+            'token': token,
         }
 
         return data

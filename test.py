@@ -3,24 +3,21 @@ import numpy as np
 import open3d.ml as _ml3d
 import open3d.ml.torch as ml3d
 
-#import open3d.ml.torch as ml3d
-from ml3d.ml3d.datasets.nuscenes import NuScenes as NS
-from ml3d.ml3d.torch.pipelines.object_detection import ObjectDetection as OD
-from ml3d.ml3d.torch.models.point_pillars import PointPillars as PP
+from open3dml.ml3d.datasets.nuscenes import NuScenes as NS
+from open3dml.ml3d.torch.pipelines.object_detection import ObjectDetection as OD
+from open3dml.ml3d.torch.models.point_pillars import PointPillars as PP
 
-from ml3d.ml3d.vis.labellut import *
-
-cfg_file = "./ml3d/ml3d/configs/pointpillars_nuscenes.yml"
+cfg_file = "./open3dml/ml3d/configs/pointpillars_nuscenes.yml"
 cfg = _ml3d.utils.Config.load_from_file(cfg_file)
+cfg.dataset['dataset_path'] = "/media/jerry/HDD/N"
 
 model = PP(**cfg.model)
-cfg.dataset['dataset_path'] = "/home/jerry/Desktop/NuScenesDataset/mini"
 dataset = NS(cfg.dataset.pop('dataset_path', None), **cfg.dataset)
 pipeline = OD(model, dataset=dataset, device="gpu", **cfg.pipeline)
 
 # get the weights.
 ckpt_folder = "./logs/PointPillars_NuScenes_torch/checkpoint"
-ckpt_path = os.path.join(ckpt_folder, "ckpt_00150.pth")
+ckpt_path = os.path.join(ckpt_folder, "ckpt_00100.pth")
 if not os.path.exists(ckpt_path):
     print("Not found")
 
@@ -34,21 +31,26 @@ pipeline.cfg_tb = {
     'pipeline': ''
 }
 
-#boxes, pred, gt = pipeline.run_self_inference()
-
 data_split = dataset.get_split('train')
-first_data = data_split.get_data(5)
+first_data = data_split.get_data(0)
 
-new_data = model.preprocess(first_data, {'split': 'test'})
-
-results = pipeline.run_inference(new_data)
+test_data = model.preprocess(first_data, {'split': 'test'})
+results = pipeline.run_inference(test_data)
 
 print("Predicted boxes:" + str(len(results[0])))
-#print(results[0])
+print(results[0])
+for entry in results[0]:
+    print("----------------------------------------------")
+    print(entry.label_class)
+    print(entry.center)
+    print(entry.size)
 predictedLabels = np.array([results[0][i].label_class for i in range(len(results[0]))])
-#print(predictedLabels)
-print("----------------------------------------------")
+
 print("Ground truth boxes:" + str(len(first_data['bounding_boxes'])))
+for entry in first_data['bounding_boxes']:
+    print(entry.label_class)
+    print(entry.center)
+    print(entry.size)
 
 vis = ml3d.vis.Visualizer()
 data = [ {
