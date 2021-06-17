@@ -83,7 +83,30 @@ with open('results.json', 'w') as outfile:
                 attr = "vehicle.moving"
             elif str(bbox.label_class) == "pedestrian":
                 attr = "pedestrian.standing"
+            
+            translation = bbox.center
+            rotation = euler_to_quaternion(bbox.yaw, 0, 0)
+            
+            #translation = [18.414385, 59.51602513, 0.76963457]
+            #rotation = [0.00872823, 0, 0, 0.9999619]
+            # -> 373.26, 1130.42, 0.80
+            # -> 0.983 +0.019i +0.005j -0.183k
+            print(translation)
+            print(rotation)
 
+            translation = np.dot(Quaternion(data['lidar2ego_rot']).rotation_matrix, translation)
+            rotation = Quaternion(data['lidar2ego_rot']) * rotation
+
+            translation += data['lidar2ego_tr']
+
+            translation = np.dot(Quaternion(data['ego2global_rot']).rotation_matrix, translation)
+            rotation = Quaternion(data['ego2global_rot']) * rotation
+
+            translation += data['ego2global_tr']
+
+            print(translation)
+            print(rotation)
+  
             dictionary = {
                 'sample_token' : str(token),
                 'translation' : np.array(bbox.center).tolist(),
