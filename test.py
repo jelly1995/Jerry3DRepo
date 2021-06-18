@@ -1,5 +1,4 @@
 import os
-import numpy as np
 import open3d.ml as _ml3d
 import open3d.ml.torch as ml3d
 
@@ -9,15 +8,16 @@ from open3dml.ml3d.torch.models.point_pillars import PointPillars as PP
 
 cfg_file = "./open3dml/ml3d/configs/pointpillars_nuscenes.yml"
 cfg = _ml3d.utils.Config.load_from_file(cfg_file)
-cfg.dataset['dataset_path'] = "/media/jerry/HDD/N"
+cfg.dataset['dataset_path'] = "/media/jerry/HDD/NMini"
 
 model = PP(**cfg.model)
 dataset = NS(cfg.dataset.pop('dataset_path', None), **cfg.dataset)
 pipeline = OD(model, dataset=dataset, device="gpu", **cfg.pipeline)
 
 # get the weights.
-ckpt_folder = "./logs/PointPillars_NuScenes_torch/checkpoint"
-ckpt_path = os.path.join(ckpt_folder, "ckpt_00100.pth")
+#ckpt_folder = "./logs/PointPillars_NuScenes_torch/checkpoint"
+ckpt_folder = "/home/jerry/Desktop/checkpoint"
+ckpt_path = os.path.join(ckpt_folder, "ckpt_00010.pth")
 if not os.path.exists(ckpt_path):
     print("Not found")
 
@@ -31,32 +31,4 @@ pipeline.cfg_tb = {
     'pipeline': ''
 }
 
-data_split = dataset.get_split('train')
-first_data = data_split.get_data(0)
-
-test_data = model.preprocess(first_data, {'split': 'test'})
-results = pipeline.run_inference(test_data)
-
-print("Predicted boxes:" + str(len(results[0])))
-print(results[0])
-for entry in results[0]:
-    print("----------------------------------------------")
-    print(entry.label_class)
-    print(entry.center)
-    print(entry.size)
-predictedLabels = np.array([results[0][i].label_class for i in range(len(results[0]))])
-
-print("Ground truth boxes:" + str(len(first_data['bounding_boxes'])))
-for entry in first_data['bounding_boxes']:
-    print(entry.label_class)
-    print(entry.center)
-    print(entry.size)
-
-vis = ml3d.vis.Visualizer()
-data = [ {
-    'name': 'my_point_cloud',
-    'points': first_data['point'],
-} ]
-
-#vis.visualize(data=data, bounding_boxes=results[0])
-vis.visualize(data=data, bounding_boxes=results[0])
+pipeline.run_valid()

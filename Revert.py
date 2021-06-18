@@ -20,31 +20,31 @@ def euler_to_quaternion(yaw, pitch, roll):
 
     return [qw, qx, qy, qz]
 
+def ToQuaternion(yaw, pitch, roll):
+    cy = np.cos(yaw * 0.5)
+    sy = np.sin(yaw * 0.5)
+    cp = np.cos(pitch * 0.5)
+    sp = np.sin(pitch * 0.5)
+    cr = np.cos(roll * 0.5)
+    sr = np.sin(roll * 0.5)
+
+    w = cr * cp * cy + sr * sp * sy
+    x = sr * cp * cy - cr * sp * sy
+    y = cr * sp * cy + sr * cp * sy
+    z = cr * cp * sy - sr * sp * cy
+
+    return [w,x,y,z]
+
+
 cfg_file = "./open3dml/ml3d/configs/pointpillars_nuscenes.yml"
 cfg = _ml3d.utils.Config.load_from_file(cfg_file)
-cfg.dataset['dataset_path'] = "/media/jerry/HDD/NTest"
+cfg.dataset['dataset_path'] = "/media/jerry/HDD/NMini"
 
 model = PP(**cfg.model)
 dataset = NS(cfg.dataset.pop('dataset_path', None), **cfg.dataset)
 pipeline = OD(model, dataset=dataset, device="gpu", **cfg.pipeline)
 
-# get the weights.
-ckpt_folder = "/home/jerry/Desktop/checkpoint"
-ckpt_path = os.path.join(ckpt_folder, "ckpt_00100.pth")
-if not os.path.exists(ckpt_path):
-    print("Not found")
-
-# load the parameters.
-pipeline.load_ckpt(ckpt_path=ckpt_path)
-pipeline.cfg_tb = {
-    'readme': 'readme',
-    'cmd_line': 'cmd_line',
-    'dataset': '',
-    'model': '',
-    'pipeline': ''
-}
-
-data_split = dataset.get_split('test')
+data_split = dataset.get_split('val')
 
 with open('results.json', 'w') as outfile:
 
@@ -61,9 +61,9 @@ with open('results.json', 'w') as outfile:
         }
     }
 
-    for i in range(6008):
+    for i in range(3):
         print(i)
-        first_data = data_split.get_data_without_label(i)
+        first_data = data_split.get_data(i)
 
         token = first_data['token']
         ego2global_tr = first_data['ego2global_tr']
@@ -75,31 +75,50 @@ with open('results.json', 'w') as outfile:
         first_data = model.preprocess(first_data, {'split': 'test'})
         results = pipeline.run_inference(first_data)
 
-        #print("Predicted boxes:" + str(len(results[0])))
-
         sample_results = []
-        for bbox in results[0]:
-            attr = ""
-            if str(bbox.label_class) == "car":
-                attr = "vehicle.parked"
-            elif str(bbox.label_class) == "truck":
-                attr = "vehicle.parked"
-            elif str(bbox.label_class) == "pedestrian":
-                attr = "pedestrian.standing"
-            elif str(bbox.label_class) == "bicycle":
-                attr = "cycle.with_rider"
-            
+
+        
+
+        for bbox in bounding_boxes:    
             translation = bbox.center
 
-            yaw = bbox.yaw
-            rot = -(yaw + (np.pi / 2))
-            QuadRot = euler_to_quaternion(rot, 0, 0)
-            QuadRot = Quaternion(lidar2ego_rot) * QuadRot
-            QuadRot = Quaternion(ego2global_rot) * QuadRot
+            if token == '3e8750f331d7499e9b5123e9eb70f2e2':
+                
+                rotation_test = Quaternion([0.3598258294147673, 0.0, 0.0, 0.9330194920182401])
+                print("Ground Truth Starting:" + str(rotation_test))
+                rotation_test = Quaternion(ego2global_rot).inverse * rotation_test
+                rotation_test = Quaternion(lidar2ego_rot).inverse * rotation_test
+
+                rot_test = rotation_test.yaw_pitch_roll[0]
+                rot_test = - rot_test - np.pi / 2
+            
+                print("Calculated Ending:" + str(rot_test)) 
+
+                yaw = bbox.yaw
+                print("Ground Truth Ending:" + str(yaw))
+
+                rot = -(yaw + (np.pi / 2))
+                rotation = ToQuaternion(rot, 0, 0)
+
+                rotation = Quaternion(lidar2ego_rot) * rotation
+                rotation = Quaternion(ego2global_rot) * rotation
+                print(rotation)
+
+
+
+
+                #print("-----------------------------------------------------------")
+
+            QuadRot = euler_to_quaternion(yaw, 0, 0)
 
             translation = np.dot(Quaternion(lidar2ego_rot).rotation_matrix, translation)
+            QuadRot = Quaternion(lidar2ego_rot) * QuadRot
+
             translation += lidar2ego_tr
+
             translation = np.dot(Quaternion(ego2global_rot).rotation_matrix, translation)
+            QuadRot = Quaternion(ego2global_rot) * QuadRot
+
             translation += ego2global_tr
 
             QuadRot[1] = 0
@@ -115,10 +134,6 @@ with open('results.json', 'w') as outfile:
                 'translation' : np.array(translation).tolist(),
                 'size' : np.array(bbox.size).tolist(),
                 'rotation' : np.array(rotation).tolist(),
-                'velocity' : np.array([0, 0]).tolist(),
-                'detection_name' : str(bbox.label_class),
-                'detection_score' : bbox.confidence.tolist(),
-                'attribute_name' : attr,
             }
             sample_results.append(dictionary)
 

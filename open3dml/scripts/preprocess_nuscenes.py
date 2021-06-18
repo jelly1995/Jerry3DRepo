@@ -14,12 +14,13 @@ import random
 import argparse
 from tqdm import tqdm
 
+
 def parse_args():
     parser = argparse.ArgumentParser(description='Preprocess NuScenes Dataset>>>>>>>.')
     parser.add_argument('--dataset_path',
                         help='path to Nuscene root',
                         required=False,
-                        default='/media/jerry/HDD/NTest')
+                        default='/media/jerry/HDD/N')
     parser.add_argument(
         '--out_path',
         help='Output path to store pickle (default to dataet_path)',
@@ -28,7 +29,7 @@ def parse_args():
 
     parser.add_argument('--version',
                         help='one of {v1.0-trainval, v1.0-test, v1.0-mini}',
-                        default='v1.0-test')
+                        default='v1.0-trainval')
 
     args = parser.parse_args()
 
@@ -152,11 +153,12 @@ class NuScenesProcess():
             data = {
                 'lidar_path': lidar_path,
                 'token': sample['token'],
+                'timestamp': sample['timestamp'],
                 'lidar2ego_tr': calib_rec['translation'],
                 'lidar2ego_rot': calib_rec['rotation'],
                 'ego2global_tr': pose_rec['translation'],
                 'ego2global_rot': pose_rec['rotation'],
-                'timestamp': sample['timestamp']
+                
             }
 
             if not self.is_test:
@@ -164,6 +166,7 @@ class NuScenesProcess():
                     nusc.get('sample_annotation', token)
                     for token in sample['anns']
                 ]
+
                 locs = np.array([b.center for b in boxes]).reshape(-1, 3)
                 dims = np.array([b.wlh for b in boxes]).reshape(-1, 3)
                 rots = np.array([

@@ -28,9 +28,7 @@ log = logging.getLogger(__name__)
 
 
 class ObjectDetection(BasePipeline):
-    """
-    Pipeline for object detection. 
-    """
+    """Pipeline for object detection."""
 
     def __init__(self,
                  model,
@@ -151,7 +149,7 @@ class ObjectDetection(BasePipeline):
                 results = model(data['point'])
 
                 if(len(data['bbox_objs']) == 0):
-                    print(len(data['bbox_objs']))
+                    #print(len(data['bbox_objs']))
                     continue
 
                 loss = model.loss(results, data)
@@ -267,7 +265,7 @@ class ObjectDetection(BasePipeline):
                 results = model(data['point'])
                 
                 if(len(data['bbox_objs']) == 0):
-                    print(len(data['bbox_objs']))
+                    #print(len(data['bbox_objs']))
                     continue
 
                 loss = model.loss(results, data)

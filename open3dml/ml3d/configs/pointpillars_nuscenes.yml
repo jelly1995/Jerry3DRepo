@@ -2,7 +2,7 @@ dataset:
   name: NuScenes
   dataset_path: # path/to/your/dataset
   cache_dir: ./logs/cache
-  steps_per_epoch_train: 28000
+  steps_per_epoch_train: 28130
 
 model:
   name: PointPillars
@@ -88,7 +88,7 @@ pipeline:
   name: ObjectDetection
   test_compute_metric: true
   batch_size: 1
-  val_batch_size: 1
+  val_batch_size: 2
   save_ckpt_freq: 5
   max_epoch: 200
   main_log_dir: ./logs

@@ -159,6 +159,7 @@ class NuSceneSplit():
     def get_data(self, idx):
         info = self.infos[idx]
         lidar_path = info['lidar_path']
+        token = info['token']
 
         world_cam = np.eye(4)
         world_cam[:3, :3] = R.from_quat(info['lidar2ego_rot']).as_matrix()
@@ -168,11 +169,21 @@ class NuSceneSplit():
         pc = self.dataset.read_lidar(lidar_path)
         label = self.dataset.read_label(info, calib)
 
+        ego2global_tr = info['ego2global_tr']
+        ego2global_rot = info['ego2global_rot']
+        lidar2ego_tr = info['lidar2ego_tr']
+        lidar2ego_rot = info['lidar2ego_rot']
+
         data = {
             'point': pc,
             'feat': None,
             'calib': calib,
             'bounding_boxes': label,
+            'token': token,
+            'ego2global_tr' : ego2global_tr,
+            'ego2global_rot' : ego2global_rot,
+            'lidar2ego_tr' : lidar2ego_tr,
+            'lidar2ego_rot' : lidar2ego_rot,
         }
 
         return data
@@ -188,6 +199,11 @@ class NuSceneSplit():
         calib = {'world_cam': world_cam.T}
 
         pc = self.dataset.read_lidar(lidar_path)
+        
+        ego2global_tr = info['ego2global_tr']
+        ego2global_rot = info['ego2global_rot']
+        lidar2ego_tr = info['lidar2ego_tr']
+        lidar2ego_rot = info['lidar2ego_rot']
 
         data = {
             'point': pc,
@@ -195,6 +211,10 @@ class NuSceneSplit():
             'calib': calib,
             'bounding_boxes': '',
             'token': token,
+            'ego2global_tr' : ego2global_tr,
+            'ego2global_rot' : ego2global_rot,
+            'lidar2ego_tr' : lidar2ego_tr,
+            'lidar2ego_rot' : lidar2ego_rot,
         }
 
         return data

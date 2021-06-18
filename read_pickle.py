@@ -3,7 +3,7 @@ import argparse
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Read pickle file.')
-    parser.add_argument('--file_path', help='path to pickle file', required=False, default='/home/jerry/Desktop/NuScenesDataset/mini/infos_train.pkl')
+    parser.add_argument('--file_path', help='path to pickle file', required=False, default='/media/jerry/HDD/NMini/infos_val.pkl')
 
     args = parser.parse_args()
 
